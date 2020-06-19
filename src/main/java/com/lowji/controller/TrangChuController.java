@@ -1,0 +1,51 @@
+package com.lowji.controller;
+
+
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.lowji.entity.DanhMucSanPham;
+import com.lowji.entity.SanPham;
+import com.lowji.service.DanhMucService;
+import com.lowji.service.SanPhamService;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
+
+@Controller
+@SessionAttributes("email")
+@RequestMapping("/")
+
+public class TrangChuController {	
+	
+	@Autowired
+	SanPhamService sanPhamService;
+	
+	@Autowired
+	DanhMucService danhMucService;
+	
+	@GetMapping
+	@Transactional
+	public String Default(ModelMap modelmap) {
+		
+		List<SanPham> lisSanPhams =  sanPhamService.LayDanhSachSanPhamLimit(1);//load sản phẩm lên trang chủ
+		List<DanhMucSanPham> danhMucSanPhams = danhMucService.LayDanhMuc(); //load danh mục sản phẩm
+		
+		modelmap.addAttribute("lisSanPhams",lisSanPhams);
+		modelmap.addAttribute("danhmuc",danhMucSanPhams);
+		
+	return "trangchu";
+}
+
+	
+}

@@ -1,0 +1,16 @@
+package com.lowji.daoimp;
+
+import java.util.List;
+
+import com.lowji.entity.SanPham;
+
+public interface SanPhamimp {
+	List<SanPham> LayDanhSachSanPhamLimit(int batdau);
+	SanPham LayDanhSachTheoMSP(int masanpham);
+	List<SanPham> LaySanPhamTheoMDM(int madanhmuc);
+	boolean XoaSanPhamTheoMaSanPham(int masp);
+	boolean ThemSanPham(SanPham sanPham);
+	boolean CapNhatSanPham(SanPham sanPham);
+		  
+}
+

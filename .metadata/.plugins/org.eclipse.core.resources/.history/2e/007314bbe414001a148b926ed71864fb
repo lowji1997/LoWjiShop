@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/lowji/controller/ApiController.java=UTF-8
+encoding//src/main/java/com/lowji/controller/DangNhapController.java=UTF-8
+encoding//src/main/java/com/lowji/controller/GioHangController.java=UTF-8
+encoding//src/main/java/com/lowji/controller/TrangChuController.java=UTF-8
+encoding//src/main/java/com/lowji/dao/NhanVienDAO.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/AdSANPHAM.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/chitietSANPHAM.jsp=UTF-8

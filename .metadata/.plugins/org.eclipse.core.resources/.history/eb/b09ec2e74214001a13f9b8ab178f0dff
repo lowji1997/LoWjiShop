@@ -1,0 +1,47 @@
+package com.lowji.dao;
+
+import java.util.List;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.lowji.daoimp.AdminDonHangimp;
+import com.lowji.entity.ChiTietHoaDon;
+import com.lowji.entity.ChiTietHoaDonId;
+import com.lowji.entity.HoaDon;import com.lowji.entity.SanPham;
+@Repository
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class AAADAO implements AdminDonHangimp {
+	@Autowired 
+	SessionFactory sessionFactory;
+	
+	@Override
+	@Transactional
+	public List<HoaDon> LayDanhSachHoaDon(int hdbatdau) {
+		Session session = sessionFactory.getCurrentSession();
+		List<HoaDon> listHoaDon =  (List<HoaDon>) session.createQuery("From HOADON where mahoadon < 50").getResultList();
+		return listHoaDon;
+	}
+	@Override
+	@Transactional
+	public HoaDon LayDanhSachChiTietHoaDonTheoMa(int mahoadon){
+		Session session = sessionFactory.getCurrentSession();
+		String query = " FROM HOADON hd WHERE hd.mahoadon = "+mahoadon;
+		HoaDon hoaDon =  (HoaDon) session.createQuery(query).getSingleResult();
+//		for (HoaDon hoaDon : listHoaDon) {
+//			System.out.println("mahd"+hoaDon.getMahoadon());
+//			for (ChiTietHoaDon chiTietHoaDon : hoaDon.getDanhsachchitiethoadon()) {
+//				System.out.println("mactsp"+chiTietHoaDon.getChiTietHoaDonId().getMachitietsanpham());
+//			}
+//		}
+		
+		return hoaDon;
+	}
+
+}

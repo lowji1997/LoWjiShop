@@ -1,0 +1,46 @@
+package com.lowji.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.lowji.dao.SanPhamDAO;
+import com.lowji.daoimp.SanPhamimp;
+import com.lowji.entity.SanPham;
+@Service
+public class SanPhamService implements SanPhamimp {
+	
+	@Autowired
+	SanPhamDAO sanPhamDAO;
+	@Override
+	public List<SanPham> LayDanhSachSanPhamLimit(int batdau) {
+		
+		return sanPhamDAO.LayDanhSachSanPhamLimit(batdau);
+	}
+	@Override
+	public SanPham LayDanhSachTheoMSP(int masanpham) {
+		return sanPhamDAO.LayDanhSachTheoMSP(masanpham);
+		 
+	}
+	@Override
+	public List<SanPham> LaySanPhamTheoMDM(int madanhmuc) {
+		
+		return sanPhamDAO.LaySanPhamTheoMDM(madanhmuc);
+	}
+	@Override
+	public boolean XoaSanPhamTheoMaSanPham(int masp) {
+		
+		return sanPhamDAO.XoaSanPhamTheoMaSanPham(masp);
+	}
+	@Override
+	public boolean ThemSanPham(SanPham sanPham) {
+		
+		return sanPhamDAO.ThemSanPham(sanPham);
+	}
+	@Override
+	public boolean CapNhatSanPham(SanPham sanPham) {
+		return sanPhamDAO.CapNhatSanPham(sanPham);
+	}
+
+}

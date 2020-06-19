@@ -1,0 +1,21 @@
+package com.lowji.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.lowji.service.ChiTietHoaDonService;
+
+@Controller
+@RequestMapping("/aaa")
+public class AAAA {
+	@Autowired
+	ChiTietHoaDonService chiTietHoaDonService;
+	@GetMapping
+ public String Default(@PathVariable int masanpham) {
+		chiTietHoaDonService.LayDanhSachChiTietHoaDonTheoMaChiTietHoaDon(masanpham);
+	 return "AAAA";
+ }
+}

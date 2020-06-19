@@ -1,0 +1,7 @@
+package com.lowji.daoimp;
+import java.util.List;
+
+import com.lowji.entity.*;
+public interface AAAimp {
+	List<HoaDon> LayDanhSachHoaDon(int hdbatdau);
+}

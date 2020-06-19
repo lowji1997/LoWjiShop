@@ -1,0 +1,50 @@
+package com.lowji.dao;
+
+import java.util.List;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.lowji.daoimp.AdminDonHangimp;
+import com.lowji.entity.ChiTietHoaDon;
+import com.lowji.entity.ChiTietHoaDonId;
+import com.lowji.entity.HoaDon;import com.lowji.entity.SanPham;
+@Repository
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class AdminDonHangDAO implements AdminDonHangimp {
+	@Autowired 
+	SessionFactory sessionFactory;
+	
+	@Override
+	@Transactional
+	public List<HoaDon> LayDanhSachHoaDon(int hdbatdau) {
+		Session session = sessionFactory.getCurrentSession();
+		List<HoaDon> listHoaDon =  (List<HoaDon>) session.createQuery("From HOADON where mahoadon < 50").getResultList();
+		return listHoaDon;
+	}
+	@Override
+	@Transactional
+	public List<ChiTietHoaDon> LayDanhSachChiTietHoaDonTheoMa(int mahoadon){
+		Session session = sessionFactory.getCurrentSession();
+		String query = " FROM CHITIETHOADON hd WHERE hd.mahoadon = "+mahoadon;
+		List<ChiTietHoaDon> listhoaDon =  (List<ChiTietHoaDon>) session.createQuery(query).getResultList();
+		for (ChiTietHoaDon chiTietHoaDon : listhoaDon) {
+			System.out.println("machitiet"+chiTietHoaDon.getChiTietHoaDonId());
+		}
+//		for (ChiTietHoaDon hoaDon1 : listhoaDon) {
+//			System.out.println("machitiethdid"+hoaDon1.getChiTietHoaDonId());
+//			for (ChiTietHoaDonId chiTietHoaDonId : hoaDon1.getChiTietHoaDonId()) {
+//				System.out.println("tensp" +chiTietHoaDonId.getMachitietsanpham().getTensanpham());
+//			}
+//		}
+		
+		return listhoaDon;
+	}
+
+}

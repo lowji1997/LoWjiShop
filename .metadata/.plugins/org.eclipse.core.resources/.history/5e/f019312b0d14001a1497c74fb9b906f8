@@ -1,0 +1,12 @@
+package com.lowji.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/donhang")
+public class HoaDonController {
+	public String Default() {
+		return "AAAA";
+	}
+}

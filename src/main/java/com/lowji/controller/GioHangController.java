@@ -1,0 +1,94 @@
+package com.lowji.controller;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.lowji.entity.ChiTietHoaDon;
+import com.lowji.entity.ChiTietHoaDonId;
+import com.lowji.entity.GioHang;
+import com.lowji.entity.HoaDon;
+import com.lowji.service.ChiTietHoaDonService;
+import com.lowji.service.HoaDonService;
+
+@Controller
+@RequestMapping("giohang/")
+public class GioHangController {
+	@Autowired
+	HoaDonService hoaDonService;
+	@Autowired
+	ChiTietHoaDonService chiTietHoaDonService;
+	@GetMapping
+ public String Default(HttpSession httpSession,ModelMap modelmap) {
+		if(httpSession.getAttribute("giohang") != null) {
+			List<GioHang> gioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
+			modelmap.addAttribute("soluongspgiohang", gioHangs.size());
+			modelmap.addAttribute("giohang", gioHangs);
+			
+		}
+	 return "giohang";
+ }
+	@PostMapping
+	public String ThemHoaDon(ModelMap modelmap,@RequestParam String tenkhachhang,@RequestParam String sodt,@RequestParam String diachigiaohang,@RequestParam String hinhthucgiaohang,@RequestParam String ghichu,HttpSession httpSession) {
+		if(null != httpSession.getAttribute("giohang") ) {
+			List<GioHang> gioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
+			
+			HoaDon hoaDon = new HoaDon();
+			if(tenkhachhang.length()>0) {
+			if(sodt.length()>0) {
+			if(diachigiaohang.length()>0) {		
+			hoaDon.setTenkhachhang(tenkhachhang);
+			hoaDon.setSodt(sodt);
+			hoaDon.setDiachigiaohang(diachigiaohang);
+			hoaDon.setHinhthucgiaohang(hinhthucgiaohang);
+			hoaDon.setGhichu(ghichu);
+			
+			 int idHoaDon = hoaDonService.ThemHoaDon(hoaDon);
+					 
+			if(idHoaDon>0) {
+				//HÓA ĐƠN ĐANG CẦN LƯU CHI TIẾT HÓA ĐƠN
+				Set<ChiTietHoaDon> listchiTietHoaDons =  new HashSet<>();
+				
+				
+				for (GioHang gioHang : gioHangs) {
+					ChiTietHoaDonId chiTietHoaDonId = new ChiTietHoaDonId();
+					chiTietHoaDonId.setMachitietsanpham(gioHang.getMachitiet());
+					chiTietHoaDonId.setMahoadon(hoaDon.getMahoadon());
+					
+					ChiTietHoaDon chiTietHoaDon =  new ChiTietHoaDon();
+					chiTietHoaDon.setChiTietHoaDonId(chiTietHoaDonId);
+					chiTietHoaDon.setGiatien(gioHang.getGiatien().toString());
+					chiTietHoaDon.setSoluong(gioHang.getSoluong());
+					
+					chiTietHoaDonService.ThemChiTietHoaDon(chiTietHoaDon);
+					
+					
+				}
+				
+			}else {
+				System.out.println("thất vbại");
+			}}else{
+				modelmap.addAttribute("validation","Chưa nhập địa chỉ giao hàng");
+			}}else{
+				modelmap.addAttribute("validation","Chưa nhập số điện thoại");
+			}}else {
+				modelmap.addAttribute("validation","Chưa nhập Họ Tên");
+			}
+			
+			//hoaDon.setDanhsachchitiethoadon(listchiTietHoaDons  );
+	
+		}
+		return "giohang";
+	}
+}

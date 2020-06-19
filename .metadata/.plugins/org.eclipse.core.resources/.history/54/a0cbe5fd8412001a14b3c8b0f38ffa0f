@@ -1,0 +1,5 @@
+package com.lowji.daoimp;
+
+public interface AAA {
+	List<ChiTietHoaDonId> LayDanhSachChiTietHoaDonTheoMaChiTietHoaDon(int machitiethoadon);
+}

@@ -1,0 +1,29 @@
+<%@page import="com.lowji.entity.NhanVien"%>
+<%@page import="com.lowji.entity.NhanVien" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<jsp:include page="header.jsp"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HELLO</title>
+</head>
+<body>
+		
+		<li class="dropdown">
+			         	 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QUẢN LÍ<span class="caret"></span></a>
+			          		<ul class="dropdown-menu">
+			            		<li><a href="#">QUẢN LÍ SẢN PHẨM</a></li>
+			            		<li><a href="#">QUẢN LÍ ĐƠN HÀNG</a></li>
+			            		<li><a href="#">THỐNG KÊ</a></li>
+			          		</ul>
+		</li>
+			
+<jsp:include page="footer.jsp"/>
+</body>
+
+</html>

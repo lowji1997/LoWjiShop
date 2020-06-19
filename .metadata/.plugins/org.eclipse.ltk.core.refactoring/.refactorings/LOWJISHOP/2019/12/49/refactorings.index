@@ -1,0 +1,29 @@
+1575185154864	Delete element
+1575185809968	Delete element
+1575185853396	Delete element
+1575186773853	Delete element
+1575187533339	Delete element
+1575208359316	Delete element
+1575208403650	Rename type 'DonHangController'
+1575208564265	Rename type 'AAAimp'
+1575208641440	Rename type 'AAAService'
+1575208673963	Rename type 'ChiTietHoaDonController'
+1575208817721	Rename type 'AAADAO'
+1575210011830	Rename resource 'DONHANG.jsp'
+1575269898245	Rename resource 'chitiet.jsp'
+1575269993041	Rename resource 'ChiTietHoaDon.jsp'
+1575270200146	Rename resource 'THEMSANPHAM.jsp'
+1575270393747	Rename resource 'AdminSANPHAM.jsp'
+1575271872136	Delete element
+1575271991452	Delete element
+1575271995480	Delete element
+1575274926162	Delete element
+1575279762118	Rename resource 'AdminSanPham.jsp'
+1575280404329	Delete element
+1575280542946	Delete element
+1575280682094	Rename type 'AdminHoaDonController'
+1575280794486	Rename type 'ThemSanPhamController'
+1575280810704	Rename type 'ThongKeController'
+1575280841382	Rename resource 'thongke.jsp'
+1575280930999	Rename type 'AdminDonHangController'
+1575281195292	Rename type 'XemDonHangController'

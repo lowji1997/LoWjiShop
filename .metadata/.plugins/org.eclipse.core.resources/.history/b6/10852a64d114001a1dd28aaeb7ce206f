@@ -1,0 +1,30 @@
+package com.lowji.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.lowji.entity.HoaDon;
+import com.lowji.service.AdminDonHangService;
+
+@Controller
+@RequestMapping("/chitiethoadon")
+public class AdminHoaDonController {
+	@Autowired
+	AdminDonHangService aaaService;
+	@GetMapping("/{mahoadon}")
+	public String Default(@PathVariable int mahoadon, ModelMap modelMap) {
+		HoaDon hoaDon = (HoaDon) aaaService.LayDanhSachChiTietHoaDonTheoMa(mahoadon);
+		
+		
+		modelMap.addAttribute("hoaDon", hoaDon);
+		
+		return "ChiTietHoaDon";
+	}
+
+}
